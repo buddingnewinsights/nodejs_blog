@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 var slug = require('mongoose-slug-generator');
+var mongooseDelete = require('mongoose-delete');
 
-mongoose.plugin(slug);
 mongoose.set('strictQuery', false);
 
 const Schema = mongoose.Schema;
 
 const Course = new Schema(
     {
+        // _id: { type: mongoose.SchemaTypes.ObjectId, required: true, indexed: true, },
         name: { type: String, required: true, maxLength: 255 },
         description: { type: String },
         image: { type: String },
@@ -20,9 +21,12 @@ const Course = new Schema(
     {
         timestamps: true,
     },
-    {
-        _id: false,
-    },
 );
+
+mongoose.plugin(slug);
+Course.plugin(mongooseDelete, {
+    deletedAt: true,
+    overrideMethods: true,
+});
 
 module.exports = mongoose.model('Course', Course);
