@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 var slug = require('mongoose-slug-generator');
 
 mongoose.plugin(slug);
+mongoose.set('strictQuery', false);
 
 const Schema = mongoose.Schema;
 
@@ -18,6 +19,9 @@ const Course = new Schema(
     },
     {
         timestamps: true,
+    },
+    {
+        _id: false,
     },
 );
 
