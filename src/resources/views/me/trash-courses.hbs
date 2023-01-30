@@ -10,7 +10,7 @@
         <th scope="col">#</th>
         <th scope="col">Tên khóa học</th>
         <th scope="col">Trình độ</th>
-        <th scope="col" colspan="2">Thời gian tạo</th>
+        <th scope="col" colspan="2">Thời gian xóa</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -21,7 +21,7 @@
         <th scope="row">{{sum @index 1}}</th>
         <td>{{this.name}}</td>
         <td>{{this.level}}</td>
-        <td>{{this.createdAt}}</td>
+        <td>{{this.deletedAt}}</td>
         <td>
             <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">Khôi phục</a>
             <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-course-modal">Xóa vĩnh viễn</a>
@@ -75,10 +75,11 @@
     var btnDeleteCourse = document.getElementById('btn-delete-course');
     var restoreBtn = $('.btn-restore');
 
+
   // When dialog confirm clicked
   $('#delete-course-modal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); // Button that triggered the modal
-    courseId = button.data('id'); // Extract info from data-* attributes
+    var button = $(event.relatedTarget); 
+    courseId = button.data('id'); 
   });
 
   // When delete course btn clicked
